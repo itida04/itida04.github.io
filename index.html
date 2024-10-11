@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Charts</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        section {
+            margin: 20px;
+            text-align: center;
+        }
+        canvas {
+            margin: 20px auto;
+            display: block;
+        }
+
+        /* Centering the iframe */
+        iframe {
+            display: block;
+            margin: 0 auto; /* Center the iframe horizontally */
+            border: none;
+        }
+    </style>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Embedded Google Spreadsheet Chart</h2>
+        <iframe width="600" height="371" seamless frameborder="0" scrolling="no" 
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSpzkoY0Hh3FLSXsKPm1JBcabmozeO2gtT1_S9j42Igf406fwoE2IaNq5D6XPpsV9edQhcEv1xpvFDB/pubchart?oid=1614138785&amp;format=interactive">
+        </iframe>
+
+        <h2>Dynamic Bar Chart Example</h2>
+        <canvas id="barChart" width="400" height="200"></canvas>
+
+        <h2>Dynamic Pie Chart Example</h2>
+        <canvas id="pieChart" width="400" height="200"></canvas>
+    </section>
+
+    <script>
+        // Sample data for Bar Chart
+        const barLabels = ['January', 'February', 'March', 'April', 'May', 'June'];
+        const barData = {
+            labels: barLabels,
+            datasets: [{
+                label: 'Bar Dataset',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                data: [12, 19, 3, 5, 2, 3], // Replace with your data
+            }]
+        };
+
+        const barConfig = {
+            type: 'bar',
+            data: barData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Initialize the Bar Chart
+        const barChart = new Chart(
+            document.getElementById('barChart'),
+            barConfig
+        );
+
+        // Sample data for Pie Chart
+        const pieData = {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+            datasets: [{
+                label: 'Pie Dataset',
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1,
+                data: [12, 19, 3, 5, 2], // Replace with your data
+            }]
+        };
+
+        const pieConfig = {
+            type: 'pie',
+            data: pieData
+        };
+
+        // Initialize the Pie Chart
+        const pieChart = new Chart(
+            document.getElementById('pieChart'),
+            pieConfig
+        );
+    </script>
+
+</body>
+</html>
